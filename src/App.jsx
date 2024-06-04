@@ -1,6 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 import {
@@ -10,9 +8,18 @@ import {
   LinearScale,
   Tooltip,
   Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+  PointElement,
+  LineElement,
+  Title,
+
+Filler} from "chart.js";
+import { Bar,Line} from "react-chartjs-2";
+
+
+//bar chart
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend,
+  PointElement, LineElement, Title, Filler
+);
 export const options ={
   responsive: true,
   plugins: {
@@ -42,12 +49,27 @@ const data = {
   ],
 };
 
+
+//line chart
+const linedata={
+  labels: labels,
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: [65, 59, 80, 81, 56, 55, 40],
+      borderColor: "rgb(255, 99, 132)",
+    },
+  ],
+
+}
+
 function App() {
 
 
   return (
     <>
-     <Bar data={data} options={options} height={20} width={60}/>
+      <Bar data={data} options={options} height={20} width={60}/>
+     <Line data={linedata} options={options} height={20} width={60}/>
     </>
   );
 }
